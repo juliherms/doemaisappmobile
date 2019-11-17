@@ -1,15 +1,75 @@
 // Ionic Variables and Theming. For more info, please see:
 // http://ionicframework.com/docs/theming/
 
+$colors: (
+  primary:    #488aff,
+  secondary:  #32db64,
+  danger:     #f53d3d,
+  light:      #f4f4f4,
+  dark:       #222
+);
+
+//Colors
+$purple: #702C91;
+$orange: #FDB813;
+$dark: #4B4237;
+$snow: #FAFAFA;
+$gray: #BFBBBA;
+
+
+
 /** Ionic CSS Variables **/
 :root {
+  .dark-theme {
+    --ion-color-primary: #0f2142;
+    --ion-color-primary-rgb: 15,33,66;
+    --ion-color-primary-contrast: #ffffff;
+    --ion-color-primary-contrast-rgb: 255,255,255;
+    --ion-color-primary-shade: #0d1d3a;
+    --ion-color-primary-tint: #273755;
+
+    .main-content {
+      background: #0f2142;
+    }
+
+    ion-list {
+      background: #3a3c74;
+    }
+    
+    ion-content {
+      --color: #fff;
+      --background: #3a3c74;
+    }
+
+    ion-item {
+      --background: #3a3c74;
+      --color: #fff;
+    }
+
+    ion-segment {
+      --color-checked: #fff;
+      --color: #b0b8ed;
+    }
+
+    ion-card {
+      --color: #fff;
+    }
+
+    ion-card-title {
+      --color: #fff;
+    }
+
+    ion-slide {
+      background: #3a3c74;
+    }
+  }
   /** primary **/
-  --ion-color-primary: #3880ff;
+  --ion-color-primary: #ff0000;
   --ion-color-primary-rgb: 56, 128, 255;
   --ion-color-primary-contrast: #ffffff;
   --ion-color-primary-contrast-rgb: 255, 255, 255;
-  --ion-color-primary-shade: #3171e0;
-  --ion-color-primary-tint: #4c8dff;
+  --ion-color-primary-shade: #ffffff;
+  --ion-color-primary-tint: #ffffff;
 
   /** secondary **/
   --ion-color-secondary: #0cd1e8;

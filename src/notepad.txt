@@ -1,0 +1,20 @@
+====== Anotações básicas ======
+ionic start academyDesign blank --type=angular
+cd academyDesign
+ionic g service services/data
+
+ionic g page pages/cadastro
+ionic g guard guards/tutorial (criando um guard)
+
+#For devices
+ionic cordova plugin add cordova-sqlite-storage
+npm i @ionic/storage
+npm i @ionic/lab
+
+npm i @fortawesome/angular-fontawesome @fortawesome/fontawesome-svg-core @fortawesome/free-brands-svg-icons
+
+ionic g page pages/tabs
+ionic g page pages/home
+ionic g page pages/news
+ionic g page pages/profile
+ionic g page pages/ongsItem

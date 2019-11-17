@@ -1,0 +1,60 @@
+<!-- Cabecalho da pagina PRINCIPAL -->
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Principal</ion-title>
+    <ion-buttons slot="end">
+      <!-- Implementar o logout -->
+      <ion-button routerLink="/login" routerDirection="root">
+        <ion-icon slot="icon-only" name="log-out"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<!-- conteudo -->
+<ion-content>
+  <!-- ongs-->
+  <ion-slides [options]="slidesOpts">
+    <ion-slide *ngFor="let o of ongs" (click)="visualizarOng(o)">
+      <ion-avatar>
+          <img src="{{o.caminhoLogo}}">  
+      </ion-avatar>
+      <p text-capitalize text-center>{{o.nome}}</p>
+    </ion-slide>
+  </ion-slides>
+
+  <!-- painel -->
+  <div class="ion-padding">
+    <ion-card color="light">
+      <ion-card-header>
+          <ion-card-title>Minhas doações</ion-card-title>
+          <ion-card-subtitle>Descrição do problema</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+          <p class="valorTotal">{{valorDoado | currency:'BRL':true:'1.2-2' }}</p>
+      </ion-card-content>
+    </ion-card>
+
+
+    <!--
+    <div class="horizontal-cards">
+
+        <ion-card color="light">
+            <ion-card-header>
+                <ion-card-subtitle></ion-card-subtitle>
+            </ion-card-header>
+            <ion-card-content>
+                
+            </ion-card-content>
+          </ion-card>
+
+          <ion-card color="light">
+              <ion-card-header>
+                  <ion-card-subtitle></ion-card-subtitle>
+              </ion-card-header>
+              <ion-card-content>
+                  
+              </ion-card-content>
+            </ion-card>
+    </div>-->
+  </div>
+</ion-content>

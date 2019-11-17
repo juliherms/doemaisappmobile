@@ -1,0 +1,46 @@
+.horizontal-cards{
+    ion-card{
+        display: inline-block;
+        width: 40%;
+    }
+}
+
+ion-slide{
+    background: var(--ion-color-light);
+    display: block;
+
+    p {
+        font-size: 6pt;
+        margin-top:0;
+    }
+
+    ion-avatar{
+        display: inline-block;
+        margin-top:10px;
+
+        img{
+            border: 2px solid var(--ion-color-primary);
+        }
+    }
+}
+
+ion-card-title{
+    color: brown;
+}
+
+.showAllOptions {
+    padding: 5px;
+    border-radius: 100px;
+    border: 2px solid red;
+    color:red;
+    padding-top: 10px;
+    font-weight: bold;
+    text-align: center;
+}
+
+
+.valorTotal{
+    font-weight: bold;
+    font-size: 40px;
+    color: brown;
+}

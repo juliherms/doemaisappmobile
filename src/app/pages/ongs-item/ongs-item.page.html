@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="app"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ ong?.nome }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-card *ngIf="ong">
+    <ion-card-header>
+      <ion-card-title>{{ ong.nome }}</ion-card-title>
+      <ion-card-subtitle></ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <img [src]="ong.caminhoLogo">
+              {{ong.texto}}
+    </ion-card-content>
+  </ion-card>
+  <!-- listagem de ongs -->
+  <ion-item *ngFor="let c of campanhas">
+    <ion-label>{{c.nome}} - {{c.dataInicial}} - {{c.valorTotal}}</ion-label>
+    <button ion-button icon clear item-right>
+        <ion-icon name="arrow-forward"></ion-icon>
+    </button>
+  </ion-item>
+</ion-content>
+
+
+

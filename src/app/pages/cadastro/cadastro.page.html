@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Cadastro</ion-title>
+  </ion-toolbar>
+ </ion-header>
+
+<ion-content>
+    <ion-row>
+        <ion-col size="12" size-sm="10" offset-sm="1" size-md="8" offset-md="2" size-lg="8" offset-lg="2" size-xl="6" offset-xl="3">
+            <ion-card>
+                <ion-card-content>
+                    <form (ngSubmit)="salvar()" [formGroup]="usuarioForm">
+
+                        <ion-item lines="none">
+                          <ion-label position="stacked">Nome</ion-label>
+                          <ion-input type="text" placeholder="Nome" formControlName="nome"></ion-input>
+                        </ion-item>
+
+                        <ion-item lines="none">
+                            <ion-label position="stacked">Email</ion-label>
+                            <ion-input type="email" placeholder="Email" formControlName="email"></ion-input>
+                          </ion-item>
+
+                        <ion-item lines="none">
+                          <ion-label position="stacked">Login</ion-label>
+                          <ion-input type="text" placeholder="Login" formControlName="login"></ion-input>
+                        </ion-item>
+
+                        <ion-item lines="none" >
+                            <ion-label position="stacked">Senha</ion-label>
+                            <ion-input type="text" placeholder="Senha" formControlName="senha"></ion-input>
+                        </ion-item>
+
+                        <ion-list>
+                            <ion-radio-group formControlName="perfis">
+                              <ion-list-header>
+                                <ion-label>Perfil</ion-label>
+                              </ion-list-header>
+              
+                              <ion-item>
+                                <ion-label>Voluntário</ion-label>
+                                <ion-radio slot="start" value="2"></ion-radio>
+                              </ion-item>
+              
+                              <ion-item>
+                                <ion-label>Ong</ion-label>
+                                <ion-radio slot="start" value="3"></ion-radio>
+                              </ion-item>
+              
+                            </ion-radio-group>
+                          </ion-list>
+              
+                        <!-- Criar conta -->
+                        <ion-button class="ion-padding-horizontal" color="primary" expand="full" type="submit" shape="round"
+                        [disabled]="!usuarioForm.valid">Criar conta</ion-button>
+          
+                    </form>
+                </ion-card-content>
+            </ion-card>
+        </ion-col>
+    </ion-row>  
+</ion-content>
