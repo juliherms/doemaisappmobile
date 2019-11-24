@@ -4,33 +4,39 @@
     <div class="bg-login">
        <!-- OVERLAY -->
       <div class="overlay">
-        <div>
-            <div class="center padding-top-10-percent">
-                <img src="../../../assets/imgs/doePlus.png" class="logo-white-login">
-            </div>
-            <!-- TEXTOS -->
-            <div class="mg-top-30">
-              <!-- TÍTULO -->
-              <h5 class="txtRegistrar center bold no-margin">Que bom te ver aqui!</h5>
-            </div>
-             <!-- FORMS E CTA -->
-            <div class="padding-40">
-              <!-- EMAIL-->
-              <ion-item class="bg-transparent no-padding mg-top-30">
-                <ion-label stacked class="snow bold">E-mail</ion-label>
-                <ion-input [(ngModel)] = "creds.login" name="email" type="email" class="snow" ></ion-input>
-              </ion-item>
-              <!-- SENHA -->
-              <ion-item class="bg-transparent no-padding mg-top-20">
-                <ion-label stacked class="snow bold">Senha</ion-label>
-                <ion-input [(ngModel)] = "creds.senha" name="senha" type="password" class="snow" ></ion-input>
-              </ion-item>
-              <!-- ENTRAR -->
-              <div class="ctaLogin center bold mg-top-30" (click)="logar()">Entrar</div>
-              <!-- NOVA CONTA -->
-              <div class="txtRegistrar bold mg-top-20 center" (click)="cadastrar()">Quero criar uma nova conta</div>
-            </div>
-        </div>  
-      </div><!-- FIM OVERLAY-->
+          <div>
+              <div class="center padding-top-10-percent">
+                  <img src="../../../assets/imgs/doePlus.png" class="logo-white-login">
+              </div>
+              <!-- TEXTOS -->
+              <div class="mg-top-30">
+                <!-- TÍTULO -->
+                <h5 class="txtRegistrar center bold no-margin">Que bom te ver aqui!</h5>
+              </div>
+              <!-- FORMS E CTA -->
+              <div class="padding-40">
+                <form [formGroup]="formulario">
+                <!-- EMAIL-->
+                <ion-item class="bg-transparent no-padding mg-top-30">
+                  <ion-label stacked class="snow bold">E-mail</ion-label>
+                  <!--<ion-input formControlName="login" name="email" type="email" class="snow" ></ion-input>-->
+                  <ion-input type="text" maxlength="20" placeholder="Login" formControlName="login" autocomplete="login" (keyup.enter)="logar()"></ion-input>
+                </ion-item>
+                <!-- SENHA -->
+                <ion-item class="bg-transparent no-padding mg-top-20">
+                  <ion-label stacked class="snow bold">Senha</ion-label>
+                <!--  <ion-input [(ngModel)] = "creds.senha" name="senha" type="password" class="snow" ></ion-input>-->
+                  <ion-input [type]="exibirSenha ? 'password' : 'text'" placeholder="Senha" formControlName="senha" autocomplete="senha" (keyup.enter)="logar()"></ion-input>
+                  <ion-icon class="clickable" [name]="exibirSenha ? 'eye' : 'eye-off'" (click)="controlarExibeSenha()"></ion-icon>
+                </ion-item>
+                <!-- ENTRAR -->
+                <div class="ctaLogin center bold mg-top-30 animated fadeIn" (click)="logar()">Entrar</div>
+                <!-- ENTRAR -->
+                <!-- NOVA CONTA -->
+                <div class="txtRegistrar bold mg-top-20 center" (click)="cadastrar()">Quero criar uma nova conta</div>
+                 </form>
+              </div>
+          </div>  
+        </div><!-- FIM OVERLAY-->
     </div>
 </ion-content>

@@ -17,7 +17,7 @@ export class AuthService{
     constructor(public http: HttpClient,public storage: StorageService){}
 
     //metodo responsavel por autenticar um usuario no sistema
-    autenticar(creds: CredenciaisDTO){
+    autenticar(creds){
         //realiza a chamada do metodo login via POST.
          return this.http.post(
             `${API_CONFIG.baseUrl}/login`,

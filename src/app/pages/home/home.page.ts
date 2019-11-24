@@ -1,3 +1,5 @@
+import { LocalUser } from './../../model/localUser';
+import { StorageService } from './../../services/storage.service';
 import { DoacoesService } from './../../services/doacoes.service';
 import { OngsService } from './../../services/ongs.service';
 import { Component, OnInit } from '@angular/core';
@@ -19,10 +21,14 @@ export class HomePage implements OnInit {
   ongs = []; //lista de ong a ser exibida
 
   valorDoado: number;
+  
 
+  localUser : LocalUser; // captura o usuario logado
+  
   constructor(private ongService: OngsService, // service de api da ong
               private loadingCtrl: LoadingController,
               private doacaoService: DoacoesService,
+              private storageService: StorageService, //service de storage
               private router: Router // classe de loading
               ) 
   {
@@ -39,7 +45,11 @@ export class HomePage implements OnInit {
     let loading = await this.loadingCtrl.create();
     await loading.present();
  
-    this.doacaoService.getValorTotalDoado("juliherms").subscribe( res =>{
+    this.localUser = this.storageService.getLocalUser();
+
+    let login = this.localUser.login.sub.toString();
+
+    this.doacaoService.getValorTotalDoado(login).subscribe( res =>{
       this.valorDoado = res;
     })
 

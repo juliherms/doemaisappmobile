@@ -1,9 +1,9 @@
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CredenciaisDTO } from './../../model/credenciais.dto';
 import { AuthService } from './../../services/auth.service';
-import { LoadingController,NavController, AlertController } from '@ionic/angular';
+import { LoadingController,NavController, AlertController, ToastController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
-import { TouchSequence } from 'selenium-webdriver';
 
 
 @Component({
@@ -13,6 +13,11 @@ import { TouchSequence } from 'selenium-webdriver';
 })
 export class LoginPage implements OnInit {
 
+  //variavel responsavel por controlar a exibicao da senha.
+  exibirSenha = true; 
+  //formulario de preenchimento do login e senha.
+  formulario: FormGroup;
+
   //inicializa a variavel de login e senha.
   creds : CredenciaisDTO = {
     login: "",
@@ -20,16 +25,32 @@ export class LoginPage implements OnInit {
   };
   
   constructor(public navCtrl: NavController,
+              private fb: FormBuilder,
               private router: Router,
               public loadingCtrl: LoadingController,
+              public toastCtrl: ToastController,
               private alertCtrl: AlertController,
               public auth: AuthService) {
+
+    //inicializa o formulario  
+    this.formulario = this.fb.group({
+      login:['',Validators.compose([
+        Validators.required,
+      ])],
+      senha:['',Validators.compose([
+        Validators.minLength(5),
+        Validators.required
+      ])]
+    });
 
   }
 
   ngOnInit() {}
 
-
+  //metodo responsavel pelo controle da exibicao da senha
+  controlarExibeSenha(){
+    this.exibirSenha = !this.exibirSenha;
+  }
   //método responsável por direcionar para a tela de cadastro
   cadastrar(){
     this.router.navigateByUrl("/cadastro");
@@ -38,16 +59,18 @@ export class LoginPage implements OnInit {
   //Método responsável por realizar o login na aplicacao.
   async logar(){
 
-    let loading = await this.loadingCtrl.create();
+    let loading = await this.loadingCtrl.create({ message: 'Autenticando...'});
     await loading.present();
 
-    this.auth.autenticar(this.creds).subscribe(response => {
+    let credencial = this.formulario.value;
+
+    this.auth.autenticar(credencial).subscribe(response => {
       this.auth.sucessoLogin(response.headers.get('Authorization'));
       this.loadingCtrl.dismiss();
        //chama a pagina após o login
        this.router.navigateByUrl('/app');
     }, error => {
-      console.log("juliherms, tratar erro");
+      this.showError("Erro ao realizar o login");
       this.loadingCtrl.dismiss();
     }) 
   }
@@ -60,6 +83,17 @@ export class LoginPage implements OnInit {
     }).then((res) => {
       res.present();
     });
+  }
+
+  //exibe uma mensagem de erro.
+  async showError(mensagem){
+    const error = await this.toastCtrl.create({ 
+      message: mensagem,
+      showCloseButton: true,
+      closeButtonText: 'Fechar',
+      duration: 3000});
+
+    error.present();
   }
 
 }
